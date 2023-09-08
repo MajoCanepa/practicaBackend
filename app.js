@@ -3,7 +3,12 @@ import morgan from 'morgan';
 import path from 'path';
 import dotenv from 'dotenv';
 
+import { entornos } from './config/entornos.js';
+import { conexionBD } from './config/database.js';
+
 const app = express();
+const port = process.env.PORT || 4000;
+
 
 app.use(express.json());
 app.use(morgan('dev'));
@@ -12,6 +17,7 @@ app.use(morgan('dev'));
 dotenv.config({ path: '.env' });
 
 
-app.listen(4000, () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`);
+app.listen(4000, async () => {
+    console.log(`Servidor corriendo en http://localhost:${port}`)
+    conexionBD();
 })
