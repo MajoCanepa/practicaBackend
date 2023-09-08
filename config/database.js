@@ -1,14 +1,22 @@
 import { Sequelize, DataTypes } from 'sequelize';
+import { entornos  } from './entornos.js';
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: process.env.DB_HOST,
-    dialect: 'mysql'
-}); 
+
+export const sequelize = new Sequelize(
+    entornos.DB.DB_NAME,
+    entornos.DB.DB_USER,
+    entornos.DB.DB_PASSWORD,
+    {
+        host: entornos.DB.DB_HOST,
+        dialect: entornos.DB.DB_DIALECT,
+        port: entornos.DB.DB_PORT
+    }
+)
 
 export const conexionBD = async () => {
     try {
         await sequelize.authenticate();
-        console.log("Conexión exitosa en la base de datos")
+        console.log("Conexión exitosa a la base de datos")
     } catch (error) {
         console.log("Error al conectar la base de datos", error);
     }

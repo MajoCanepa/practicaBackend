@@ -18,6 +18,6 @@ dotenv.config({ path: '.env' });
 
 
 app.listen(4000, async () => {
-    console.log(`Servidor corriendo en http://localhost:${port}`)
+    console.log(`Servidor on en: http://localhost:${port}`)
     conexionBD();
 })
